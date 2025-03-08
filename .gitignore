@@ -1,10 +1,21 @@
 q1 <- matrix(c(4, 4, 1, 8, 7, 5, 8, 8, 5, 9, 8, 6), nrow = 6, ncol = 2, byrow = TRUE)
+#create
 dist(q1)
-
-
 vgsales <- read.csv(file = "vgsales.csv")
-a)
-
-dim(vgsales)
+dim(vgsales)  #number of observations
 table(vgsales$Genre)
+summary(vgsales$NA_Sales)
+var(vgsales$NA_Sales)
+pairs(vgsales [ ,5:7])
+bp <- read.csv(file = "BP.csv")
+bp$race <- as.factor(bp$race)
+fit0 <- lm(bp ~ age + height + weight + race, data = bp)
+summary(fit0)
+newdat <- data.frame(age = 20, height = 70, weight = 160, race = as.factor(4))
+predict(fit0, newdat)
+fit1 <- lm(bp ~ age + height + weight + race + age:weight, data = bp)
+summary(fit1)
+fit2 <- lm(bp ~ . + log(age) + I(weight^2), data = bp)
+summary(fit2)
+
 
